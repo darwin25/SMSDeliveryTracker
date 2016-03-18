@@ -5,7 +5,7 @@ using System.Data;
 using Mono.Data.Sqlite;
 using System.IO;
 
-namespace DemoApp
+namespace SMSDeliveryTracker
 {
     class Database
     {
@@ -60,10 +60,7 @@ namespace DemoApp
                 bool sqldb_exists = File.Exists(sqldb_path);
                 if (!sqldb_exists)
                 {
-                    //sqldb = SQLiteDatabase.OpenOrCreateDatabase(sqldb_path, null);
-                    //sqldb_query = "CREATE TABLE IF NOT EXISTS MessageIn (Id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , SendTime DATETIME NOT NULL , ReceiveTime DATETIME, MessageFrom VARCHAR, MessageTo VARCHAR, SMSC VARCHAR, MessageText VARCHAR, MessageType VARCHAR, MessageParts INTEGER, MessagePDU VARCHAR, Gateway VARCHAR, UserId VARCHAR);";
-                    //sqldb.ExecSQL(sqldb_query);
-
+                   
                     this.CreateTableMessageIn(sqldb_path);
                     this.CreateTableDelivery(sqldb_path);
 
@@ -101,21 +98,6 @@ namespace DemoApp
             sqldb.ExecSQL("INSERT INTO Delivery (DeliveryId, CustomerName, Address, MobileNumber, CommitedDeliveryTime, OrderAmount, DeliveryStatus) VALUES ('12345-4','Rocco Pasco','Pasig','+639982292906','3/17/2016 12:00:00 AM','500','PENDING / UNASSIGNED'); ");
             sqldb.ExecSQL("INSERT INTO Delivery (DeliveryId, CustomerName, Address, MobileNumber, CommitedDeliveryTime, OrderAmount, DeliveryStatus) VALUES ('12345-5','Ava Pasco','Pasig','+639982292906','3/17/2016 12:00:00 AM','600','PENDING / UNASSIGNED'); ");
         }
-
-        //Adds a new record with the given parameters
-        //public void AddRecord(string messagetext, string messagefrom, DateTime sendtime, DateTime receivetime)
-        //{
-        //    try
-        //    {
-        //        sqldb_query = "INSERT INTO MessageIn (MessageText, MessageFrom, Age) VALUES ('" + sName + "','" + sLastName + "'," + iAge + ");";
-        //        sqldb.ExecSQL(sqldb_query);
-        //        sqldb_message = "Record saved";
-        //    }
-        //    catch (SQLiteException ex)
-        //    {
-        //        sqldb_message = ex.Message;
-        //    }
-        //}
 
         public void AddRecordMessageIn(object obj)
 
@@ -190,7 +172,7 @@ namespace DemoApp
 
             return functionReturnValue;
         }
-        //Updates an existing record with the given parameters depending on id parameter
+
         public void UpdateRecord(string deliveryid, string deliverystatus, string datetimeupdated)
         {
             try
@@ -237,38 +219,6 @@ namespace DemoApp
             }
         }
 
-        //public void UpdateRecord(object obj)
-        //{
-        //    MessageInVO vo = (MessageInVO)obj;
-        //    try
-        //    {
-        //        sqldb_query = "Update MessageIn Set MessageText = " + vo.me, MessageFrom, SendFrom, ReceiveTime) VALUES ('" + vo.MessageText + "','" + vo.MessageFrom + "'," + vo.MessageFrom + "'," + vo.ReceiveTime.ToString() + ");";
-        //        sqldb.ExecSQL(sqldb_query);
-        //        sqldb_message = "Record saved";
-        //    }
-        //    catch (SQLiteException ex)
-        //    {
-        //        sqldb_message = ex.Message;
-        //    }
-        //}
-
-        //Deletes the record associated to id parameter
-        //public void DeleteRecord(int iId)
-        //{
-        //    try
-        //    {
-        //        sqldb_query = "DELETE FROM MyTable WHERE _id ='" + iId + "';";
-        //        sqldb.ExecSQL(sqldb_query);
-        //        sqldb_message = "Record " + iId + " deleted";
-        //    }
-        //    catch (SQLiteException ex)
-        //    {
-        //        sqldb_message = ex.Message;
-        //    }
-        //}
-        //Searches a record and returns an Android.Database.ICursor cursor
-        //Shows all the records from the table
-
         public Android.Database.ICursor GetRecordCursor()
         {
             Android.Database.ICursor sqldb_cursor = null;
@@ -287,6 +237,7 @@ namespace DemoApp
             }
             return sqldb_cursor;
         }
+
         //Searches a record and returns an Android.Database.ICursor cursor
         //Shows records according to search criteria
         public Android.Database.ICursor GetRecordCursor(string sValue)

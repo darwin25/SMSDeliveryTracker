@@ -6,9 +6,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace DemoApp
+namespace SMSDeliveryTracker
 {
-    [Activity(Label = "DemoApp", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "SMS Delivery Tracker", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         //Database class new object
@@ -47,8 +47,8 @@ namespace DemoApp
             listItems.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs> (item_Clicked);           
 
         }
-        //Launched when a ListView item is clicked
         
+        //Launched when a ListView item is clicked        
         void item_Clicked (object sender, AdapterView.ItemClickEventArgs e)
         {
             //Gets TextView object instance from record_view layout
@@ -62,6 +62,7 @@ namespace DemoApp
             activity2.PutExtra("deliveryId", shDeliveryId.Text);
             StartActivity(activity2);
         }
+
         //Gets the cursor view to show all records
         void GetCursorView()
         {
@@ -87,6 +88,7 @@ namespace DemoApp
                 
             }
         }
+
         //Gets the cursor view to show records according to search criteria
         void GetCursorView (string sqldb_column, string sqldb_value)
         {

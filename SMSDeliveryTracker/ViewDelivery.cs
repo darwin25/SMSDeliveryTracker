@@ -11,9 +11,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace DemoApp
+namespace SMSDeliveryTracker
 {
-    [Activity(Label = "ViewDelivery")]
+    [Activity(Label = "Delivery Details")]
     public class ViewDelivery : Activity
     {
         Database sqldb;
@@ -63,7 +63,6 @@ namespace DemoApp
 
                 btnUpdatedCompleted.Enabled = false;               
             };
-
         }
 
         private void InitializeControls()
