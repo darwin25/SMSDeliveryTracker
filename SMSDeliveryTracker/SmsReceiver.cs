@@ -12,7 +12,7 @@ using Android.Widget;
 using Android.Telephony;
 using Android.Util;
 
-namespace DemoApp
+namespace SMSDeliveryTracker
 {
     [BroadcastReceiver]
     [IntentFilter(

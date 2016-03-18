@@ -1,6 +1,6 @@
 using System;
 
-namespace DemoApp
+namespace SMSDeliveryTracker
 {
     [Serializable()]
     public class MessageInVO

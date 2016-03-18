@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Telephony;
 
-namespace DemoApp
+namespace SMSDeliveryTracker
 {
     public class SmsSender
     {

@@ -11,7 +11,7 @@
 
 [assembly: global::Android.Runtime.ResourceDesignerAttribute("DemoApp.Resource", IsApplication = true)]
 
-namespace DemoApp
+namespace SMSDeliveryTracker
 {
 
 
