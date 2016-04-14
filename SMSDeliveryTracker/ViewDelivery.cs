@@ -42,8 +42,8 @@ namespace SMSDeliveryTracker
                 string message = editDeliveryID.Text + "|" + datetimeaccepted + "|" + "ACCEPTED";
 
                 SmsSender s = new SmsSender();
-
-                s.SendSMS("+639288706627", message);
+                              
+                s.SendSMS(AppConstant.SMSServer, message);
 
                 sqldb.UpdateRecord(editDeliveryID.Text, "ACCEPTED", datetimeaccepted.ToString());
                 btnAccept.Enabled = false;
@@ -56,8 +56,8 @@ namespace SMSDeliveryTracker
                 string message = editDeliveryID.Text + "|" + datetimeaccepted + "|" + "DELIVERED";
 
                 SmsSender s = new SmsSender();
-                
-                s.SendSMS("+639288706627", message);
+
+                s.SendSMS(AppConstant.SMSServer, message);
 
                 sqldb.UpdateRecord(editDeliveryID.Text, "DELIVERED", datetimeaccepted.ToString(), datetimeaccepted.ToString());
 
@@ -99,7 +99,6 @@ namespace SMSDeliveryTracker
             editCommitedDeliveryTime.Text  = this.GetTime(dt.Rows[0]["CommitedDeliveryTime"].ToString());
             editOrderAmount.Text = dt.Rows[0]["OrderAmount"].ToString();
             editDeliveryStatus.Text = dt.Rows[0]["DeliveryStatus"].ToString();
-
 
             if (editDeliveryStatus.Text == "PENDING / UNASSIGNED")
             {
