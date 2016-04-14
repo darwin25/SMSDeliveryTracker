@@ -18,6 +18,7 @@ namespace SMSDeliveryTracker
         TextView shMsg;
 
         ListView listItems;
+        private SmsReceiver _receiver;
         //Launches the Create event for app
         protected override void OnCreate (Bundle bundle)
         {
@@ -42,12 +43,12 @@ namespace SMSDeliveryTracker
             shMsg.Text = DateTime.Today.Date.ToShortDateString();
 
             GetCursorView();
-         
+           
             //Add ItemClick event handler to ListView instance
-            listItems.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs> (item_Clicked);           
-
+            listItems.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs> (item_Clicked);
+            _receiver = new SmsReceiver();
         }
-        
+
         //Launched when a ListView item is clicked        
         void item_Clicked (object sender, AdapterView.ItemClickEventArgs e)
         {
@@ -84,8 +85,7 @@ namespace SMSDeliveryTracker
             } 
             else 
             {
-                Toast.MakeText(Application.Context, sqldb.Message, ToastLength.Long).Show();
-                
+                Toast.MakeText(Application.Context, sqldb.Message, ToastLength.Long).Show();                
             }
         }
 
@@ -103,8 +103,7 @@ namespace SMSDeliveryTracker
                     Resource.Id.Id_row,
                     Resource.Id.DeliveryId_row, 
                     Resource.Id.CustomerName_row,
-                    Resource.Id.CommitedDeliveryTime_row
-                 
+                    Resource.Id.CommitedDeliveryTime_row                 
                 };
                 SimpleCursorAdapter sqldb_adapter = new SimpleCursorAdapter (this, Resource.Layout.record_view, sqldb_cursor, from, to);
                 listItems.Adapter = sqldb_adapter;
@@ -114,6 +113,8 @@ namespace SMSDeliveryTracker
                 Toast.MakeText(Application.Context, sqldb.Message, ToastLength.Long).Show();
             }
         }
+
+   
     }
 }
 
